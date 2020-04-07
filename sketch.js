@@ -62,8 +62,16 @@ function windowResized() {
 function draw() {
 
 	document.getElementById("root").ondragstart = function () { return false; };
-	background(250, 217, 245);
+	background(211, 211, 211);
 	angleMode(DEGREES);
+
+	drawFriendConnections();
+  drawEnemyConnections();
+
+	checkForTriangles();
+	checkForEnemyTriangles();
+	highlightEnemyTriangles();
+	highlightFriendTriangles();
 
 	for (var i = 0; i < people.length; i++) {
 		people[i].show();
@@ -75,27 +83,23 @@ function draw() {
 		combinationsChecked ++;
 	}
 	counter++;
-	drawFriendConnections();
-  drawEnemyConnections();
-	checkForTriangles();
-	checkForEnemyTriangles();
-	highlightEnemyTriangles();
-	highlightFriendTriangles();
+
+
 	if(speed > 60){
 		speed = 60;
 	}
 	if(freeze){
 		textSize(32);
-		fill(0, 0, 255);
+		fill(204, 102, 0);
 		stroke(0)
 		strokeWeight(2);
 		textAlign(CENTER);
-		text('Press the Spacebar to unfreeze', width / 2, height - 100);
+		text('Press the Spacebar to unfreeze', width / 2, height - 40);
 	}
 
 	if(solved){
 		textSize(32);
-		fill(0, 0, 255);
+		fill(204, 102, 0);
 		stroke(0)
 		strokeWeight(2);
 		textAlign(CENTER);
@@ -104,7 +108,8 @@ function draw() {
 
 	push();
 	textSize(32);
-	fill(0, 0, 255);
+	//fill(0, 0, 255);
+	fill(204, 102, 0);
 	stroke(0)
 	strokeWeight(2);
 	text('Solutions: ' + n, width - 200, 100);
@@ -299,7 +304,7 @@ function highlightFriendTriangles(){
 		let j = i * 3;
 		strokeWeight(8);
 		//stroke(45, 34, 244);
-		stroke(10, 255, 10)
+		stroke(76, 153, 0)
 	line(people[friendTriangles[j]].position.x, people[friendTriangles[j]].position.y, people[friendTriangles[j+1]].position.x, people[friendTriangles[j+1]].position.y);
 	line(people[friendTriangles[j+1]].position.x, people[friendTriangles[j+1]].position.y, people[friendTriangles[j+2]].position.x, people[friendTriangles[j+2]].position.y);
 	line(people[friendTriangles[j]].position.x, people[friendTriangles[j]].position.y, people[friendTriangles[j+2]].position.x, people[friendTriangles[j+2]].position.y);
@@ -416,7 +421,7 @@ function generateRandomEnemies(){
 function drawFriendConnections(){
 	for(var i = 0; i < people.length; i++){
 		//console.log(people[i].friendships);
-		stroke(10, 255, 10);
+		stroke(76, 153, 0);
 		strokeWeight(2);
 		for(var j = 0; j < people[i].friendships.length; j++){
 			line(people[i].position.x, people[i].position.y, people[people[i].friendships[j]].position.x, people[people[i].friendships[j]].position.y)
@@ -463,9 +468,10 @@ class Person{
 	}
 
 	show(){
-		stroke(64, 233, 76);
+		//stroke(204, 204, 0);
+		stroke(76, 0, 153)
 		strokeWeight(1);
-		fill(64, 233, 76);
+		fill(76, 0, 153);
 		if(this.dragging ){
 			fill(0, 90, 255);
 		}
