@@ -62,7 +62,7 @@ function windowResized() {
 function draw() {
 
 	document.getElementById("root").ondragstart = function () { return false; };
-	background(250, 217, 245);
+	background(211, 211, 211);
 	angleMode(DEGREES);
 
 	for (var i = 0; i < people.length; i++) {
