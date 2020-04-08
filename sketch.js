@@ -103,7 +103,7 @@ function draw() {
 		stroke(0)
 		strokeWeight(2);
 		textAlign(CENTER);
-		text('Solved!', width / 2, 100);
+		text('Solved! R(3, 3) = ' + (n[n.length-1] + 1), width / 2, 100);
 	}
 
 	push();
