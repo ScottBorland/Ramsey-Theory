@@ -43,6 +43,7 @@ var combinationsChecked = 0;
 var speed = 5;
 var freeze = false;
 
+var newSolution = false;
 var solved = false;
 
 function setup() {
@@ -106,6 +107,15 @@ function draw() {
 		text('Solved! R(3, 3) = ' + (n[n.length-1] + 1), width / 2, 100);
 	}
 
+	if(newSolution){
+		textSize(32);
+		fill(204, 102, 0);
+		stroke(0)
+		strokeWeight(2);
+		textAlign(CENTER);
+		text('New Solution!', width / 2, 100);
+	}
+
 	push();
 	textSize(32);
 	//fill(0, 0, 255);
@@ -147,6 +157,9 @@ function keyPressed(){
 	}
 	if(keyCode == 32){
 		freeze = !freeze;
+		if(newSolution){
+			newSolution = false;
+			}
 		}
 }
 
@@ -189,6 +202,7 @@ function visualiseTesting(p, f, s){
 				if(test()){
 					if(n[n.length-1] != p){
 						n.push(p);
+						newSolution = true;
 						freeze = true;
 					}
 					//console.log(n);
